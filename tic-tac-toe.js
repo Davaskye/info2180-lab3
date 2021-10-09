@@ -16,6 +16,15 @@ window.onload = function() {
         }
 
     }
+
+    let newGameButton = document.getElementsByClassName("btn");
+//    for (let i = 0; i < newGameButton.length; i++){
+//        console.log(newGameButton[i]);
+//    }
+    console.log(newGameButton[0]);
+    newGameButton[0].onclick = function(){
+        restartGame();
+    }
     
 }
 
@@ -29,7 +38,7 @@ const winningSquares = [
 ];
 
 console.log(winningSquares.includes([0,1,2]));
-const currentPlays = ["","","","","","","","",""]; //keeps track of what was played
+let currentPlays = ["","","","","","","","",""]; //keeps track of what was played
 
 let clickTracker = function(currentBox){
       /*  let option = document.querySelector("square");*/
@@ -88,6 +97,22 @@ let hoverTracker = function(currentBox){
 let hoverTrackerRemoval = function(currentBox){
     currentBox.classList.remove("hover");
 }
+
+function restartGame(){
+    currentPlays = ["","","","","","","","",""];
+    let boxes = document.getElementById("board").children;
+    for (let i = 0; i < boxes.length; i++){
+        boxes[i].innerHTML = "";
+        boxes[i].classList.remove("X");
+        boxes[i].classList.remove("O");
+    }
+    let statusBox = document.getElementById("status");
+    statusBox.classList.remove("you-won");
+    statusBox.innerHTML = "Move your mouse over a square and click to play an X or an O.";
+    gameOver = false;
+}
+
+
 
 //TO DO LIST BELOW:
 //fill array in such a way that it would match winning numbers.
