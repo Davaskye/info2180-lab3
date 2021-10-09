@@ -41,26 +41,33 @@ console.log(winningSquares.includes([0,1,2]));
 let currentPlays = ["","","","","","","","",""]; //keeps track of what was played
 
 let clickTracker = function(currentBox){
-      /*  let option = document.querySelector("square");*/
-
-    if (whichOne == 0){
-        player = "X";
-        whichOne = 1;
-        currentBox.innerHTML = "X";
-        currentBox.classList.add("X");
-        currentPlays[currentBox.id] = "X";
+    if (gameOver){
+        console.log("Game is over. Restart to continue!");
     }
-    else{
-        player = "O";
-        whichOne = 0;
-        currentBox.innerHTML = "O";
-        currentBox.classList.add("O");
-        currentPlays[currentBox.id] = "O";
-
+    else if (currentBox.innerHTML == "X" || currentBox.innerHTML == "O"){
+        console.log("Pick a different square!");
     }
-    winChecker();
-    console.log(`${player} clicked at square ${currentBox.id}.`);
-    console.log(currentPlays);
+    else
+    {
+        if (whichOne == 0){
+            player = "X";
+            whichOne = 1;
+            currentBox.innerHTML = "X";
+            currentBox.classList.add("X");
+            currentPlays[currentBox.id] = "X";
+        }
+        else{
+            player = "O";
+            whichOne = 0;
+            currentBox.innerHTML = "O";
+            currentBox.classList.add("O");
+            currentPlays[currentBox.id] = "O";
+
+        }
+        winChecker();
+        console.log(`${player} clicked at square ${currentBox.id}.`);
+        console.log(currentPlays);
+    }
 }
 
 //This section deals with win checking
@@ -111,11 +118,3 @@ function restartGame(){
     statusBox.innerHTML = "Move your mouse over a square and click to play an X or an O.";
     gameOver = false;
 }
-
-
-
-//TO DO LIST BELOW:
-//fill array in such a way that it would match winning numbers.
-/*  for example, if index 2 is selected, fill index 2 with value whether X or Y. 
-*/
-//can removeDefault for stuff already filled.
